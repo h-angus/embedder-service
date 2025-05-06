@@ -2,11 +2,8 @@ name: Publish Embedder Docker Image
 
 on:
   push:
-    paths:
-      - 'embedder-service/**'
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [ main ]
+  workflow_dispatch:  # allow manual trigger
 
 jobs:
   build-and-push:
