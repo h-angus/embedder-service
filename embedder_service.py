@@ -10,5 +10,6 @@ class EmbedRequest(BaseModel):
 
 @app.post("/embed")
 def embed(request: EmbedRequest):
+    # Force list conversion to ensure JSON serializability
     embeddings = model.encode(request.texts, convert_to_tensor=False)
-    return {"embeddings": embeddings}
+    return {"embeddings": [e.tolist() if hasattr(e, "tolist") else list(e) for e in embeddings]}
